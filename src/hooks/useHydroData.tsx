@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/hooks/use-toast';
 import api from '@/services/api';
+import { supabase } from '@/integrations/supabase/client';
 import { 
   SensorReadings, 
   RelayStates, 
@@ -25,13 +26,15 @@ export function useHydroData(deviceId: string = DEFAULT_DEVICE_ID) {
     queryFn: () => api.getLatestSensorData(deviceId),
     refetchInterval: DEFAULT_POLLING_INTERVAL,
     initialData: mockCurrentReadings,
-    onError: (error) => {
-      console.error('Failed to fetch sensor data:', error);
-      toast({
-        title: 'Data Fetch Error',
-        description: 'Could not retrieve the latest sensor readings',
-        variant: 'destructive',
-      });
+    meta: {
+      onError: (error: Error) => {
+        console.error('Failed to fetch sensor data:', error);
+        toast({
+          title: 'Data Fetch Error',
+          description: 'Could not retrieve the latest sensor readings',
+          variant: 'destructive',
+        });
+      }
     }
   });
 
@@ -41,8 +44,10 @@ export function useHydroData(deviceId: string = DEFAULT_DEVICE_ID) {
     queryFn: () => api.getRelayStates(deviceId),
     refetchInterval: DEFAULT_POLLING_INTERVAL,
     initialData: mockRelayStates,
-    onError: (error) => {
-      console.error('Failed to fetch relay states:', error);
+    meta: {
+      onError: (error: Error) => {
+        console.error('Failed to fetch relay states:', error);
+      }
     }
   });
 
@@ -52,8 +57,10 @@ export function useHydroData(deviceId: string = DEFAULT_DEVICE_ID) {
     queryFn: () => api.getSensorHistory(deviceId),
     refetchInterval: DEFAULT_POLLING_INTERVAL,
     initialData: mockHistoricalData,
-    onError: (error) => {
-      console.error('Failed to fetch historical data:', error);
+    meta: {
+      onError: (error: Error) => {
+        console.error('Failed to fetch historical data:', error);
+      }
     }
   });
 
@@ -62,8 +69,10 @@ export function useHydroData(deviceId: string = DEFAULT_DEVICE_ID) {
     queryKey: ['crop-profiles', deviceId],
     queryFn: () => api.getCropProfiles(deviceId),
     initialData: mockCropProfiles,
-    onError: (error) => {
-      console.error('Failed to fetch crop profiles:', error);
+    meta: {
+      onError: (error: Error) => {
+        console.error('Failed to fetch crop profiles:', error);
+      }
     }
   });
 
@@ -73,8 +82,10 @@ export function useHydroData(deviceId: string = DEFAULT_DEVICE_ID) {
     queryFn: () => api.getDeviceStatus(deviceId),
     refetchInterval: DEFAULT_POLLING_INTERVAL,
     initialData: 'online' as SystemStatus,
-    onError: (error) => {
-      console.error('Failed to fetch system status:', error);
+    meta: {
+      onError: (error: Error) => {
+        console.error('Failed to fetch system status:', error);
+      }
     }
   });
 

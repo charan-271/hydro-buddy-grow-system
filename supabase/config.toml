@@ -1,1 +1,8 @@
+
 project_id = "fxgqkwinhpvwnhfxhfoo"
+
+[functions.sensor-data]
+verify_jwt = false
+
+[functions.relay-state]
+verify_jwt = false

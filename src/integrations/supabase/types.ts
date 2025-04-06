@@ -9,10 +9,222 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      crop_profiles: {
+        Row: {
+          created_at: string
+          device_id: string
+          id: string
+          is_active: boolean
+          max_air_humidity: number
+          max_air_temp: number
+          max_ph: number
+          max_tds: number
+          max_water_temp: number
+          min_air_humidity: number
+          min_air_temp: number
+          min_ph: number
+          min_tds: number
+          min_water_temp: number
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          device_id: string
+          id?: string
+          is_active?: boolean
+          max_air_humidity: number
+          max_air_temp: number
+          max_ph: number
+          max_tds: number
+          max_water_temp: number
+          min_air_humidity: number
+          min_air_temp: number
+          min_ph: number
+          min_tds: number
+          min_water_temp: number
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          device_id?: string
+          id?: string
+          is_active?: boolean
+          max_air_humidity?: number
+          max_air_temp?: number
+          max_ph?: number
+          max_tds?: number
+          max_water_temp?: number
+          min_air_humidity?: number
+          min_air_temp?: number
+          min_ph?: number
+          min_tds?: number
+          min_water_temp?: number
+          name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crop_profiles_device_id_fkey"
+            columns: ["device_id"]
+            isOneToOne: false
+            referencedRelation: "devices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      devices: {
+        Row: {
+          created_at: string
+          id: string
+          last_seen: string | null
+          location: string | null
+          name: string
+          status: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_seen?: string | null
+          location?: string | null
+          name: string
+          status?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_seen?: string | null
+          location?: string | null
+          name?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
+      relay_states: {
+        Row: {
+          air_circulation_relay: boolean
+          created_at: string
+          device_id: string
+          humidity_relay: boolean
+          id: string
+          tds_relay: boolean
+          timestamp: string
+        }
+        Insert: {
+          air_circulation_relay?: boolean
+          created_at?: string
+          device_id: string
+          humidity_relay?: boolean
+          id?: string
+          tds_relay?: boolean
+          timestamp?: string
+        }
+        Update: {
+          air_circulation_relay?: boolean
+          created_at?: string
+          device_id?: string
+          humidity_relay?: boolean
+          id?: string
+          tds_relay?: boolean
+          timestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "relay_states_device_id_fkey"
+            columns: ["device_id"]
+            isOneToOne: false
+            referencedRelation: "devices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sensor_readings: {
+        Row: {
+          air_humidity: number
+          air_temperature: number
+          created_at: string
+          device_id: string
+          id: string
+          ph: number
+          tds: number
+          timestamp: string
+          water_temperature: number
+        }
+        Insert: {
+          air_humidity: number
+          air_temperature: number
+          created_at?: string
+          device_id: string
+          id?: string
+          ph: number
+          tds: number
+          timestamp?: string
+          water_temperature: number
+        }
+        Update: {
+          air_humidity?: number
+          air_temperature?: number
+          created_at?: string
+          device_id?: string
+          id?: string
+          ph?: number
+          tds?: number
+          timestamp?: string
+          water_temperature?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sensor_readings_device_id_fkey"
+            columns: ["device_id"]
+            isOneToOne: false
+            referencedRelation: "devices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
-      [_ in never]: never
+      latest_relay_states: {
+        Row: {
+          air_circulation_relay: boolean | null
+          device_id: string | null
+          humidity_relay: boolean | null
+          id: string | null
+          tds_relay: boolean | null
+          timestamp: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "relay_states_device_id_fkey"
+            columns: ["device_id"]
+            isOneToOne: false
+            referencedRelation: "devices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      latest_sensor_readings: {
+        Row: {
+          air_humidity: number | null
+          air_temperature: number | null
+          device_id: string | null
+          id: string | null
+          ph: number | null
+          tds: number | null
+          timestamp: string | null
+          water_temperature: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sensor_readings_device_id_fkey"
+            columns: ["device_id"]
+            isOneToOne: false
+            referencedRelation: "devices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       [_ in never]: never

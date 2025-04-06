@@ -8,9 +8,10 @@ interface SystemHeaderProps {
   status: SystemStatus;
   activeTab: string;
   setActiveTab: (value: string) => void;
+  connected?: boolean;
 }
 
-const SystemHeader: React.FC<SystemHeaderProps> = ({ status, activeTab, setActiveTab }) => {
+const SystemHeader: React.FC<SystemHeaderProps> = ({ status, activeTab, setActiveTab, connected = false }) => {
   return (
     <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b pb-4">
       <div className="flex flex-col md:flex-row justify-between items-center py-4 gap-4">
@@ -29,7 +30,7 @@ const SystemHeader: React.FC<SystemHeaderProps> = ({ status, activeTab, setActiv
           <h1 className="text-xl font-bold">Hydro Buddy</h1>
         </div>
         
-        <StatusIndicator status={status} />
+        <StatusIndicator status={status} connected={connected} />
       </div>
       
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
