@@ -59,3 +59,24 @@ export interface WebSocketMessage {
   data: SensorReadings | RelayStates | SystemStatus;
   timestamp: string;
 }
+
+// API related types
+export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  error?: string;
+}
+
+export interface SensorDataPostPayload {
+  readings: Omit<SensorReadings, 'timestamp'>;
+  systemStatus: SystemStatus;
+  relayStates: RelayStates;
+  deviceId: string;
+}
+
+export interface FetchSensorDataParams {
+  deviceId: string;
+  limit?: number;
+  from?: string;
+  to?: string;
+}
