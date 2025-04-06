@@ -59,3 +59,52 @@ export interface WebSocketMessage {
   data: SensorReadings | RelayStates | SystemStatus;
   timestamp: string;
 }
+
+// Database Models
+export interface DeviceModel {
+  id: string;
+  name: string;
+  location: string;
+  createdAt: string;
+  lastSeen: string;
+  status: SystemStatus;
+}
+
+export interface SensorReadingModel {
+  id: string;
+  deviceId: string;
+  airTemperature: number;
+  airHumidity: number;
+  waterTemperature: number;
+  tds: number;
+  ph: number;
+  timestamp: string;
+}
+
+export interface RelayStateModel {
+  id: string;
+  deviceId: string;
+  tdsRelay: boolean;
+  humidityRelay: boolean;
+  airCirculationRelay: boolean;
+  timestamp: string;
+}
+
+export interface CropProfileModel {
+  id: string;
+  deviceId: string;
+  name: string;
+  minAirTemp: number;
+  maxAirTemp: number;
+  minAirHumidity: number;
+  maxAirHumidity: number;
+  minWaterTemp: number;
+  maxWaterTemp: number;
+  minTds: number;
+  maxTds: number;
+  minPh: number;
+  maxPh: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
