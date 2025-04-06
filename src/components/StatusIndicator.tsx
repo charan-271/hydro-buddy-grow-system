@@ -25,14 +25,14 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({ status, connected = f
   const getStatusText = () => {
     switch (status) {
       case 'online':
-        return connected ? 'API Connected' : 'System Online';
+        return connected ? 'Live Data' : 'System Online';
       case 'warning':
         return 'Warning';
       case 'error':
         return 'Error';
       case 'offline':
       default:
-        return connected ? 'Connecting to API...' : 'Offline';
+        return connected ? 'Connecting...' : 'Offline';
     }
   };
 
