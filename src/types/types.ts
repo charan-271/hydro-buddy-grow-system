@@ -50,3 +50,12 @@ export interface HistoricalData {
   tds: DataPoint[];
   ph: DataPoint[];
 }
+
+// WebSocket message types
+export type WebSocketMessageType = 'sensor_data' | 'relay_status' | 'system_status';
+
+export interface WebSocketMessage {
+  type: WebSocketMessageType;
+  data: SensorReadings | RelayStates | SystemStatus;
+  timestamp: string;
+}
