@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Hydro buddy theme colors
+				hydro: {
+					'green-light': '#8BC34A',
+					'green': '#4CAF50',
+					'green-dark': '#2E7D32',
+					'blue-light': '#00BCD4',
+					'blue': '#03A9F4',
+					'blue-dark': '#0288D1',
+					'earth': '#795548',
+					'earth-light': '#A1887F',
+					'warning': '#FF9800',
+					'danger': '#F44336',
+					'success': '#4CAF50',
 				}
 			},
 			borderRadius: {
@@ -84,11 +99,16 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 			}
 		}
 	},
