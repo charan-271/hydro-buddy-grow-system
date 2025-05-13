@@ -134,7 +134,7 @@ ESP32 GPIO Pin ---> 1kΩ Resistor ---> BC547 Base
 ### Software Setup
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/hydro-buddy-grow-system.git
+   git clone https://github.com/charan-271/hydro-buddy-grow-system.git
    cd hydro-buddy-grow-system
    ```
 
